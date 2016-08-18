@@ -1,4 +1,4 @@
-# PrognosticsAlgorithmLibrary
+# Prognostics Algorithm Library
 
 The Prognostics Algorithm Library is a suite of algorithms implemented in the MATLAB programming language for model-based prognostics (remaining life computation). It includes algorithms for state estimation and prediction, including uncertainty propagation. The algorithms take as inputs component models developed in Matlab, and perform estimation and prediction functions. The library allows the rapid development of prognostics solutions for given models of components and systems. Different algorithms can be easily swapped to do comparative studies and evaluations of different algorithms to select the best for the application at hand.
 
@@ -17,6 +17,10 @@ The PrognosticsModelLibrary has been tested with Matlab R2016a, but should work 
 ## Contributions
 
 All contributions are welcome. Issues may be opened using GitHub. To contribute directly, open a pull request against the "develop" branch. Pull requests will be evaluated and integrated into the next official release.
+
+## License
+
+This software is released under the [NASA Open Source Agreement Version 1.3](https://github.com/nasa/PrognosticsAlgorithmLibrary/blob/master/LICENSE.pdf).
 
 ## Notices
 
