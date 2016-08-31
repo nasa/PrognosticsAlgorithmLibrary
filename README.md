@@ -10,6 +10,10 @@ Installation can be done in one of two ways. Either (1) use the provided MATLAB 
 
 See https://github.com/nasa/PrognosticsAlgorithmLibrary/blob/master/docs/PrognosticsAlgorithmLibrary-UserManual.pdf.
 
+## Dependencies
+
+Some modules included in this library are dependent on the [Prognostics Model Library](https://github.com/nasa/PrognosticsModelLibrary).
+
 ## Compatibility
 
 The PrognosticsModelLibrary has been tested with Matlab R2016a, but should work with older versions, down to at least R2012a.
