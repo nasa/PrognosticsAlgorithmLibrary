@@ -4,11 +4,15 @@ The Prognostics Algorithm Library is a suite of algorithms implemented in the MA
 
 ## Installation
 
-Installation can be done in one of two ways. Either (1) use the provided MATLAB toolbox installer provided in the install folder, which will install the toolbox in your local toolboxes folder and add the folder to your MATLAB path, or (2) copy the source from the MATLAB folder to any desired directory, and add that directory to your MATLAB path. Do not add the subdirectories (the package directories) to your MATLAB path. If the first option is used, then the MATLAB add-on manager can be used to uninstall the package; otherwise, the installation can be removed manually be removing the directory from your MATLAB path and deleting the source.
+Installation can be done in one of two ways. Either (1) use the MATLAB toolbox installer provided in the install folder, which will install the toolbox in your local toolboxes folder and add the folder to your MATLAB path, or (2) copy the source from the MATLAB folder to any desired directory, and add that directory to your MATLAB path. Do not add the subdirectories (the package directories) to your MATLAB path. If the first option is used, then the MATLAB add-on manager can be used to uninstall the package; otherwise, the installation can be removed manually by removing the directory from your MATLAB path and deleting the source.
 
 ## User Manual
 
 See https://github.com/nasa/PrognosticsAlgorithmLibrary/blob/master/docs/PrognosticsAlgorithmLibrary-UserManual.pdf.
+
+## Dependencies
+
+Some modules included in this library are dependent on the [Prognostics Model Library](https://github.com/nasa/PrognosticsModelLibrary).
 
 ## Compatibility
 
@@ -26,7 +30,9 @@ This software is released under the [NASA Open Source Agreement Version 1.3](htt
 
 Copyright © 2016 United States Government as represented by the Administrator of the National Aeronautics and Space Administration.  No copyright is claimed in the United States under Title 17, U.S. Code. All Other Rights Reserved.
 
-### Disclaimers  
+### Disclaimers
+
+
 
 No Warranty: THE SUBJECT SOFTWARE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY OF ANY KIND, EITHER EXPRESSED, IMPLIED, OR STATUTORY, INCLUDING, BUT NOT LIMITED TO, ANY WARRANTY THAT THE SUBJECT SOFTWARE WILL CONFORM TO SPECIFICATIONS, ANY IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR FREEDOM FROM INFRINGEMENT, ANY WARRANTY THAT THE SUBJECT SOFTWARE WILL BE ERROR FREE, OR ANY WARRANTY THAT DOCUMENTATION, IF PROVIDED, WILL CONFORM TO THE SUBJECT SOFTWARE. THIS AGREEMENT DOES NOT, IN ANY MANNER, CONSTITUTE AN ENDORSEMENT BY GOVERNMENT AGENCY OR ANY PRIOR RECIPIENT OF ANY RESULTS, RESULTING DESIGNS, HARDWARE, SOFTWARE PRODUCTS OR ANY OTHER APPLICATIONS RESULTING FROM USE OF THE SUBJECT SOFTWARE.  FURTHER, GOVERNMENT AGENCY DISCLAIMS ALL WARRANTIES AND LIABILITIES REGARDING THIRD-PARTY SOFTWARE, IF PRESENT IN THE ORIGINAL SOFTWARE, AND DISTRIBUTES IT "AS IS."
 

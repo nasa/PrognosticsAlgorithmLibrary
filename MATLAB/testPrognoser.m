@@ -21,12 +21,12 @@ UKF = Observers.UnscentedKalmanFilter(@battery.stateEqn,@battery.outputEqn,...
     Q,R,'symmetric',3-8,1);
 
 % Create sample generator for input equation parameters
-% For each of the 10 load segments, sample from a uniform distribution with
+% For each of the 5 load segments, sample from a uniform distribution with
 % the mean given in the loads vector and the range [-1,+1] W for load and
 % [-60,+60] s for the durations.
-gains = ones(10,1);
+gains = ones(length(loads),1);
 gains(2:2:end) = 60;
-inputParameterSampler = @(N) repmat(loads,1,N) + repmat(gains,1,N).*(rand(10,N)-0.5);
+inputParameterSampler = @(N) repmat(loads,1,N) + repmat(gains,1,N).*(rand(length(loads),N)-0.5);
 
 % Create Prognoser
 horizon = 5000;
