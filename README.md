@@ -2,6 +2,10 @@
 
 The Prognostics Algorithm Library is a suite of algorithms implemented in the MATLAB programming language for model-based prognostics (remaining life computation). It includes algorithms for state estimation and prediction, including uncertainty propagation. The algorithms take as inputs component models developed in Matlab, and perform estimation and prediction functions. The library allows the rapid development of prognostics solutions for given models of components and systems. Different algorithms can be easily swapped to do comparative studies and evaluations of different algorithms to select the best for the application at hand.
 
+## Citation
+
+Publications making use of software products obtained from this repository are requested to acknowledge the assistance received by using this repository. Please cite: "M. Daigle; Prognostics Algorithm Library [Computer software]. (2016). Retrieved from https://github.com/nasa/PrognosticsAlgorithmLibrary".
+
 ## Installation
 
 Installation can be done in one of two ways. Either (1) use the MATLAB toolbox installer provided in the install folder, which will install the toolbox in your local toolboxes folder and add the folder to your MATLAB path, or (2) copy the source from the MATLAB folder to any desired directory, and add that directory to your MATLAB path. Do not add the subdirectories (the package directories) to your MATLAB path. If the first option is used, then the MATLAB add-on manager can be used to uninstall the package; otherwise, the installation can be removed manually by removing the directory from your MATLAB path and deleting the source.
