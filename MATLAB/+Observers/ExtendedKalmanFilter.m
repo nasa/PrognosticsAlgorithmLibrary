@@ -5,7 +5,7 @@ classdef ExtendedKalmanFilter < Observers.Observer
 % This class implements the extended Kalman filter algorithm. It accepts a
 % model of the explicit discrete time-invariant form:
 %   x(k+1) = stateEqn(x(k),u(k),dt) + N(0,Q)
-%     y(k) = outputEqn(x(k),u(k)) = N(0,R)
+%     y(k) = outputEqn(x(k),u(k)) + N(0,R)
 % where N is the standard normal distribution with zero mean and covariance
 % Q or R. This class implements the Observer interface.
 %
