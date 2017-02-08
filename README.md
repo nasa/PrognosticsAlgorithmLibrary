@@ -12,7 +12,9 @@ Installation can be done in one of two ways. Either (1) use the MATLAB toolbox i
 
 ## User Manual
 
-See https://github.com/nasa/PrognosticsAlgorithmLibrary/blob/master/docs/PrognosticsAlgorithmLibrary-UserManual.pdf.
+Instructions for using the software can be found in the following sources:
+- [Wiki](https://github.com/nasa/PrognosticsAlgorithmLibrary/wiki)
+- [User Manual](https://github.com/nasa/PrognosticsAlgorithmLibrary/blob/master/docs/PrognosticsAlgorithmLibrary-UserManual.pdf).
 
 ## Dependencies
 
