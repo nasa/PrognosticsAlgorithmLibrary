@@ -15,7 +15,7 @@ classdef ExtendedKalmanFilter < Observers.Observer
 % ExtendedKalmanFilter Methods:
 %   initialize(EKF,t0,x0,u0) - Initialize filter given initial time, state,
 %   and inputs
-%   estimate(EKF,t,u,z) - Update the state and outpute estimates given new
+%   estimate(EKF,t,u,z) - Update the state and output estimates given new
 %   input and output data.
 %   getStateEstimate(EKF) - Return a state estimate structure with mean and
 %   covariance.

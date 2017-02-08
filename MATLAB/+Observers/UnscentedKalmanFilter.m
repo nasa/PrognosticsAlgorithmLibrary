@@ -16,7 +16,7 @@ classdef UnscentedKalmanFilter < Observers.Observer
 % UnscentedKalmanFilter Methods:
 %   initialize(UKF,t0,x0,u0) - Initialize filter given initial time, state,
 %   and inputs
-%   estimate(UKF,t,u,z) - Update the state and outpute estimates given new
+%   estimate(UKF,t,u,z) - Update the state and output estimates given new
 %   input and output data.
 %   getStateEstimate(UKF) - Return a state estimate structure with mean and
 %   covariance. 
