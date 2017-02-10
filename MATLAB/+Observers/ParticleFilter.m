@@ -2,7 +2,7 @@ classdef ParticleFilter < Observers.Observer
 % ParticleFilter   Class implementing the SIR particle filter
 %
 % This class implements the sampling-importance-resampling particle filter
-% algorithm. It acccepts a model of the explicit discrete time-variant
+% algorithm. It accepts a model of the explicit discrete time-variant
 % form:
 %   x(t+dt) = stateEqn(t,x(t),u(t),noise,dt)
 %     y(t) = outputEqn(t,x(t),u(t),noise)
@@ -27,12 +27,12 @@ classdef ParticleFilter < Observers.Observer
 % ParticleFilter Methods:
 %   initialize(PF,t0,x0,u0) - Initialize filter given initial time, state,
 %   and inputs
-%   estimate(PF,t,u,z) - Update the state and outpute estimates given new
+%   estimate(PF,t,u,z) - Update the state and output estimates given new
 %   input and output data.
 %   getStateEstimate(PF) - Return a state estimate structure with samples
 %   and weights fields
 %
-% Copyright (c)Â 2016 United States Government as represented by the
+% Copyright (c) 2016 United States Government as represented by the
 % Administrator of the National Aeronautics and Space Administration.
 % No copyright is claimed in the United States under Title 17, U.S.
 % Code. All Other Rights Reserved.

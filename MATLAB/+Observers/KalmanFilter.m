@@ -16,7 +16,7 @@ classdef KalmanFilter < Observers.Observer
 % KalmanFilter Methods:
 %   initialize(KF,t0,x0,u0) - Initialize filter given initial time, state,
 %   and inputs
-%   estimate(KF,t,u,z) - Update the state and outpute estimates given new
+%   estimate(KF,t,u,z) - Update the state and output estimates given new
 %   input and output data.
 %   getStateEstimate(KF) - Return a state estimate structure with mean and
 %   covariance.
@@ -29,7 +29,7 @@ classdef KalmanFilter < Observers.Observer
 % See also Observers.Observer, Observers.ExtendedKalmanFilter,
 % Observers.UnscentedKalmanFilter
 %
-% Copyright (c)Â 2016 United States Government as represented by the
+% Copyright (c) 2016 United States Government as represented by the
 % Administrator of the National Aeronautics and Space Administration.
 % No copyright is claimed in the United States under Title 17, U.S.
 % Code. All Other Rights Reserved.
