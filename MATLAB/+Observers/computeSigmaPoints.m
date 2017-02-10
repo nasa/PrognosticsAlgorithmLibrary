@@ -33,7 +33,7 @@ function [X,W,mX,PX] = computeSigmaPoints(mx,Pxx,method,parameter,alpha,sqrtFcn)
 %   See also Observers.wmean, Observers.wcov,
 %   Observers.UnscentedKalmanFilter
 %
-%   Copyright (c)Â 2016 United States Government as represented by the
+%   Copyright (c) 2016 United States Government as represented by the
 %   Administrator of the National Aeronautics and Space Administration.
 %   No copyright is claimed in the United States under Title 17, U.S.
 %   Code. All Other Rights Reserved.
