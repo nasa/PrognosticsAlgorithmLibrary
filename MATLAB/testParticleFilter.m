@@ -14,7 +14,7 @@ battery.inputEqnHandle = @(P,t)Battery.InputEqn(P,t,loads);
 % Create PF
 numParticles = 100;
 PF = Observers.ParticleFilter(@battery.stateEqn,@battery.outputEqn,...
-    battery.V,battery.N,numParticles);
+    battery.V,battery.N,numParticles,battery.x0Variance);
 
 % Get initial state for battery
 t0 = 0;
