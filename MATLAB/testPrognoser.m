@@ -1,7 +1,7 @@
 function testPrognoser
 % testPrognoser   Test Prognoser class for Battery model
 %
-%   Copyright (c) 2016 United States Government as represented by the
+%   Copyright (c)ï¿½2016 United States Government as represented by the
 %   Administrator of the National Aeronautics and Space Administration.
 %   No copyright is claimed in the United States under Title 17, U.S.
 %   Code. All Other Rights Reserved.
@@ -26,7 +26,7 @@ R = diag(batt.N);
 
 % Create UKF
 UKF = Observers.UnscentedKalmanFilter(@batt.stateEqn,@batt.outputEqn,...
-    Q,R,'symmetric',3-8,1);
+    Q,R,'symmetric',3-size(batt.states,2),1);
 
 % Create sample generator for input equation parameters
 % For each of the 5 load segments, sample from a uniform distribution with
