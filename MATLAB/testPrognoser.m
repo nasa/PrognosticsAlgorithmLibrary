@@ -1,24 +1,32 @@
 function testPrognoser
 % testPrognoser   Test Prognoser class for Battery model
 %
-%   Copyright (c) 2016 United States Government as represented by the
+%   Copyright (c) 2016 United States Government as represented by the
 %   Administrator of the National Aeronautics and Space Administration.
 %   No copyright is claimed in the United States under Title 17, U.S.
 %   Code. All Other Rights Reserved.
 
 % Create battery model
-battery = Battery.Create;
+%batt = BatteryCircuit.Create;
+batt = Battery.Create;
 
 % Set variable input profile
-loads = [8; 10*60; 4; 5*60; 12; 15*60; 5; 20*60; 10; 10*60];
+% Dependent on model (circuit uses current, electrochemistry uses power)
+if strcmp(batt.name,'BatteryCircuit')
+    loads = [2.63; 100*60];
+elseif strcmp(batt.name,'Battery')
+    loads = [8; 100*60];
+else
+    error('Model ' + batt.name + ' not supported');
+end
 
 % Set up noise covariance matrices
-Q = diag(battery.V);
-R = diag(battery.N);
+Q = diag(batt.V);
+R = diag(batt.N);
 
 % Create UKF
-UKF = Observers.UnscentedKalmanFilter(@battery.stateEqn,@battery.outputEqn,...
-    Q,R,'symmetric',3-8,1);
+UKF = Observers.UnscentedKalmanFilter(@batt.stateEqn,@batt.outputEqn,...
+    Q,R,'symmetric',3-size(batt.states,2),1);
 
 % Create sample generator for input equation parameters
 % For each of the 5 load segments, sample from a uniform distribution with
@@ -31,17 +39,18 @@ inputParameterSampler = @(N) repmat(loads,1,N) + repmat(gains,1,N).*(rand(length
 % Create Prognoser
 horizon = 5000;
 numSamples = 100;
-prognoser = Prognosis.Prognoser('model',battery,'observer',UKF,...
+prognoser = Prognosis.Prognoser('model',batt,'observer',UKF,...
     'horizon',horizon,'numSamples',numSamples,...
     'stateSampler',@Observers.meanCovSampler,...
     'inputParameterSampler',inputParameterSampler,...
-    'processNoiseSampler',@battery.generateProcessNoise);
+    'processNoiseSampler',@batt.generateProcessNoise);
 
 % Get initial state for battery simulation
 t0 = 0;
-[x0,u0,z0] = battery.getDefaultInitialization(t0,loads);
+[x0,u0,z0] = batt.getDefaultInitialization(t0,loads);
 
 % Update/initialize prognoser based on initial data
+prognoser.initialize(t0,x0,u0);
 prognoser.update(t0,u0,z0);
 
 % Set up output data matrices
@@ -68,11 +77,11 @@ z = z0;
 % Simulate battery and run prognoser
 for i=2:length(T)
     % Update state from T(i-1) to T(i)
-    x = battery.stateEqn(T(i-1),x,u,battery.generateProcessNoise(),dt);
+    x = batt.stateEqn(T(i-1),x,u,batt.generateProcessNoise(),dt);
     % Get inputs for time T(i)
-    u = battery.inputEqn(T(i),loads);
+    u = batt.inputEqn(T(i),loads);
     % Compute outputs for time T(i)
-    z = battery.outputEqn(T(i),x,u,battery.generateSensorNoise());
+    z = batt.outputEqn(T(i),x,u,batt.generateSensorNoise());
     
     % Update step for prognoser
     prognoser.update(T(i),u,z);
@@ -83,7 +92,7 @@ for i=2:length(T)
         
         % Print some status
         fprintf('Time: %g s\n',T(i));
-        battery.printOutputs(z);
+        batt.printOutputs(z);
         fprintf('    EOD: %g s\n',mean(prognoser.predictor.predictions.thresholdTimes));
         
         % Save some prediction data
@@ -115,8 +124,14 @@ ylabel('Voltage (V)');
 legend('Measured','Estimated');
 
 % Compute actual end of discharge time, giving the exact loading parameters
-battery.inputEqnHandle = @(P,t)Battery.InputEqn(P,t,loads);
-T = battery.simulateToThreshold();
+if strcmp(batt.name,'BatteryCircuit')
+    batt.inputEqnHandle = @(P,t)BatteryCircuit.InputEqn(P,t,loads);
+elseif strcmp(batt.name,'Battery')
+    batt.inputEqnHandle = @(P,t)Battery.InputEqn(P,t,loads);
+else
+    error('Model ' + batt.name + ' not supported');
+end
+T = batt.simulateToThreshold();
 trueEOD = T(end);
 
 % Plot prediction results
@@ -124,7 +139,7 @@ figure;
 plot(predictionTimes,EODMean,'o',predictionTimes,EODMin,'o',...
     predictionTimes,EODMax,'o',predictionTimes,...
     trueEOD*ones(size(predictionTimes)),'o');
-legend('Predicted EOD Mean','Predicted EOD Max','Predicted EOD Min',...
+legend('Predicted EOD Mean','Predicted EOD Min','Predicted EOD Max',...
     'True EOD');
 axis tight;
 xlabel('Time (s)')
