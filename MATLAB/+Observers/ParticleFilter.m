@@ -42,6 +42,7 @@ classdef ParticleFilter < Observers.Observer
 		outputEqn;       % Handle to output equation
 		n;               % Sensor noise variance vector
 		v;               % Process noise variance vector
+        x0variance;      % Initial states variance vector   
 		numParticles;    % Number of particles used by the filter
 		particles = [];  % Particles structure
 		minNEff;         % Effective particle number resampling threshold
@@ -50,7 +51,7 @@ classdef ParticleFilter < Observers.Observer
 	
 	methods
 		
-		function PF = ParticleFilter(stateEqn,outputEqn,processVariance,sensorVariance,numParticles,varargin)
+		function PF = ParticleFilter(stateEqn,outputEqn,processVariance,sensorVariance,numParticles,x0Variance,varargin)
 			% ParticleFilter   Constructor
             %   Construct a particle filter given the state and output
             %   equations, process and sensor noise variance vectors, the
@@ -68,6 +69,7 @@ classdef ParticleFilter < Observers.Observer
 			PF.v = processVariance;
 			PF.n = sensorVariance;
 			PF.numParticles = numParticles;
+            PF.x0variance=x0Variance;
 			
             % Set additional optional properties
             args = struct(varargin{:});
@@ -100,9 +102,9 @@ classdef ParticleFilter < Observers.Observer
             % states, and inputs
             
 			% Generate initial particle population
-			x0 = repmat(x0,1,PF.numParticles);
-			PF.particles.x = x0 + PF.initGain*PF.generateProcessNoise();
-			PF.particles.z = PF.outputEqn(t0,PF.particles.x,u0,0);
+    		x0 = repmat(x0,1,PF.numParticles);
+			PF.particles.x = x0 + sqrt(diag(PF.x0variance))*randn(length(PF.x0variance),PF.numParticles);
+            PF.particles.z = PF.outputEqn(t0,PF.particles.x,u0,0);
 			PF.particles.w = PF.likelihood(PF.outputEqn(t0,x0,u0,0),PF.particles.z);
 			
             % Normalize weights
